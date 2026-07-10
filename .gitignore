@@ -1,0 +1,32 @@
+# macOS
+.DS_Store
+
+# Node / frontend
+node_modules/
+dist/
+.vite/
+*.tsbuildinfo
+
+# Environment files (secrets) — keep .env.example
+.env
+
+# Python / backend
+.venv/
+venv/
+__pycache__/
+*.pyc
+portfolio.db
+aanya-backend/uploads/*
+!aanya-backend/uploads/.gitkeep
+
+# Scratch / generated output copies
+mnt/
+
+# Claude local settings
+.claude/settings.local.json
+
+# local working notes, not for the public repo
+RUN_PROJECT.md
+aanya-backend/PROJECT_STATUS.md
+aanya-backend/MIGRATION.md
+aanya-backend/QUICKSTART.md

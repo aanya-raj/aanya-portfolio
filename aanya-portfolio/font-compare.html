@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Font Comparison — Aanya Raj Singh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,700;1,9..144,400&family=Libre+Caslon+Display&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    background: #0a0e1a;
+    color: #f0eef5;
+    min-height: 100vh;
+    padding: 40px 20px;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .header h1 {
+    font-family: system-ui;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #7c5cff;
+    margin-bottom: 8px;
+  }
+
+  .header p {
+    font-size: 14px;
+    color: #6b6580;
+  }
+
+  .font-card {
+    border: 1px solid #1e2540;
+    border-radius: 16px;
+    padding: 40px;
+    margin-bottom: 24px;
+    background: linear-gradient(145deg, #111827, #0d1220);
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .font-card:hover {
+    border-color: #7c5cff;
+    box-shadow: 0 0 30px rgba(124, 92, 255, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .font-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  .font-name {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #b8a9e8;
+    font-weight: 600;
+  }
+
+  .font-tag {
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: rgba(124, 92, 255, 0.15);
+    color: #b8a9e8;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .font-tag.recommended {
+    background: rgba(124, 92, 255, 0.3);
+    color: #7c5cff;
+    font-weight: 600;
+  }
+
+  .name-display {
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+
+  .name-dark {
+    color: #f0eef5;
+  }
+
+  .name-accent {
+    color: #b8a9e8;
+    margin-top: 8px;
+  }
+
+  .subtitle-demo {
+    font-size: 16px;
+    color: #6b6580;
+    margin-top: 16px;
+    font-family: system-ui;
+    font-style: italic;
+  }
+
+  .font-notes {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #1e2540;
+    font-size: 14px;
+    color: #a8a3b8;
+    line-height: 1.6;
+  }
+
+  /* Individual font styles */
+  .dm-serif .name-display { font-family: 'DM Serif Display', serif; font-size: 56px; }
+  .fraunces .name-display { font-family: 'Fraunces', serif; font-size: 52px; font-weight: 400; }
+  .fraunces .name-accent { font-family: 'Fraunces', serif; font-variation-settings: 'SOFT' 100, 'WONK' 1; }
+  .libre-caslon .name-display { font-family: 'Libre Caslon Display', serif; font-size: 54px; }
+  .playfair .name-display { font-family: 'Playfair Display', serif; font-size: 54px; font-weight: 500; }
+  .cormorant .name-display { font-family: 'Cormorant Garamond', serif; font-size: 60px; font-weight: 300; }
+  .instrument .name-display { font-family: 'Instrument Serif', serif; font-size: 58px; }
+  .lora .name-display { font-family: 'Lora', serif; font-size: 52px; font-weight: 400; }
+
+  /* Sizes section */
+  .sizes-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .sizes-row .size-48 { font-size: 48px; }
+  .sizes-row .size-36 { font-size: 36px; color: #a8a3b8; }
+  .sizes-row .size-24 { font-size: 24px; color: #6b6580; }
+
+  /* Light mode preview strip */
+  .light-preview {
+    background: #faf8f5;
+    border-radius: 10px;
+    padding: 24px 32px;
+    margin-top: 16px;
+  }
+  .light-preview .name-display { color: #1a1025; }
+
+  /* Winner section */
+  .winner-section {
+    margin-top: 48px;
+    text-align: center;
+    padding: 48px;
+    border: 2px solid #7c5cff;
+    border-radius: 20px;
+    background: linear-gradient(145deg, rgba(124, 92, 255, 0.08), rgba(232, 169, 200, 0.05));
+  }
+
+  .winner-section .winner-label {
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #7c5cff;
+    margin-bottom: 16px;
+  }
+
+  .handwritten-demo {
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    color: #e8a9c8;
+    margin-top: 16px;
+    transform: rotate(-1deg);
+  }
+
+  .vs-divider {
+    text-align: center;
+    padding: 16px;
+    color: #6b6580;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+
+  .combo-preview {
+    margin-top: 16px;
+    padding: 20px 32px;
+    background: rgba(26, 32, 53, 0.5);
+    border-radius: 10px;
+  }
+
+  .combo-body {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    color: #a8a3b8;
+    line-height: 1.7;
+    margin-top: 8px;
+  }
+
+  .combo-handwritten {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: #e8a9c8;
+    margin-top: 12px;
+  }
+
+  @media (max-width: 600px) {
+    .dm-serif .name-display { font-size: 36px; }
+    .fraunces .name-display { font-size: 34px; }
+    .libre-caslon .name-display { font-size: 36px; }
+    .playfair .name-display { font-size: 36px; }
+    .cormorant .name-display { font-size: 40px; }
+    .instrument .name-display { font-size: 38px; }
+    .lora .name-display { font-size: 34px; }
+    .font-card { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  
+  <div class="header">
+    <h1>Font Comparison</h1>
+    <p>Finding the perfect serif for your name — dark mode + light preview</p>
+  </div>
+
+  <!-- 1. DM Serif Display -->
+  <div class="font-card dm-serif">
+    <div class="font-label">
+      <span class="font-name">DM Serif Display</span>
+      <span class="font-tag">Original Pick</span>
+    </div>
+    <div class="name-display name-dark">Aanya Raj Singh</div>
+    <div class="light-preview">
+      <div class="name-display">Aanya Raj Singh</div>
+    </div>
+    <div class="font-notes">
+      Classic editorial serif. Strong, confident, slightly traditional. The "A" and "S" have nice character. Clean and readable at all sizes. Safe but solid.
+    </div>
+  </div>
+
+  <!-- 2. Fraunces -->
+  <div class="font-card fraunces">
+    <div class="font-label">
+      <span class="font-name">Fraunces</span>
+      <span class="font-tag recommended">✦ My Pick</span>
+    </div>
+    <div class="name-display name-dark">Aanya Raj Singh</div>
+    <div class="name-display name-accent" style="font-style: italic; font-size: 42px; margin-top: 12px;">Aanya Raj Singh</div>
+    <div class="light-preview">
+      <div class="name-display">Aanya Raj Singh</div>
+    </div>
+    <div class="font-notes">
+      Quirky, variable font with "soft" and "wonky" axes. The letterforms have personality — slightly playful curves that feel Y2K-adjacent without being childish. The italic is gorgeous. Variable font means you can animate between weights. <strong style="color: #7c5cff;">Best match for your "clean but with personality" brief.</strong>
+    </div>
+  </div>
+
+  <!-- 3. Libre Caslon Display -->
+  <div class="font-card libre-caslon">
+    <div class="font-label">
+      <span class="font-name">Libre Caslon Display</span>
+      <span class="font-tag">Classic Editorial</span>
+    </div>
+    <div class="name-display name-dark">Aanya Raj Singh</div>
+    <div class="light-preview">
+      <div class="name-display">Aanya Raj Singh</div>
+    </div>
+    <div class="font-notes">
+      Timeless, bookish, high-contrast. Feels like a luxury magazine masthead. The double "a" in Aanya looks elegant. More serious/literary than playful.
+    </div>
+  </div>
+
+  <div class="vs-divider">— bonus options —</div>
+
+  <!-- 4. Playfair Display -->
+  <div class="font-card playfair">
+    <div class="font-label">
+      <span class="font-name">Playfair Display</span>
+      <span class="font-tag">Elegant Standard</span>
+    </div>
+    <div class="name-display name-dark">Aanya Raj Singh</div>
+    <div class="light-preview">
+      <div class="name-display">Aanya Raj Singh</div>
+    </div>
+    <div class="font-notes">
+      High-contrast, elegant. Very popular — you'll see it on a lot of portfolios. Beautiful but less unique. The "aa" pair reads cleanly.
+    </div>
+  </div>
+
+  <!-- 5. Cormorant Garamond -->
+  <div class="font-card cormorant">
+    <div class="font-label">
+      <span class="font-name">Cormorant Garamond</span>
+      <span class="font-tag">Refined / Light</span>
+    </div>
+    <div class="name-display name-dark" style="font-weight: 300;">Aanya Raj Singh</div>
+    <div class="name-display name-dark" style="font-weight: 600; font-size: 56px; margin-top: 8px;">Aanya Raj Singh</div>
+    <div class="light-preview">
+      <div class="name-display" style="font-weight: 400;">Aanya Raj Singh</div>
+    </div>
+    <div class="font-notes">
+      Extremely refined, delicate at light weights, commanding at bold. The thin weight feels luxurious on dark backgrounds. Great for a more fashion/editorial direction. The "R" and "S" have beautiful terminals.
+    </div>
+  </div>
+
+  <!-- 6. Instrument Serif -->
+  <div class="font-card instrument">
+    <div class="font-label">
+      <span class="font-name">Instrument Serif</span>
+      <span class="font-tag">Modern Minimal</span>
+    </div>
+    <div class="name-display name-dark">Aanya Raj Singh</div>
+    <div class="name-display name-dark" style="font-style: italic; font-size: 50px; margin-top: 8px;">Aanya Raj Singh</div>
+    <div class="light-preview">
+      <div class="name-display">Aanya Raj Singh</div>
+    </div>
+    <div class="font-notes">
+      Clean, modern serif — feels like a premium tech brand. The italic is stunning and would work beautifully for your rotating subtitle. Less personality than Fraunces but more contemporary.
+    </div>
+  </div>
+
+  <!-- 7. Lora -->
+  <div class="font-card lora">
+    <div class="font-label">
+      <span class="font-name">Lora</span>
+      <span class="font-tag">Warm Readable</span>
+    </div>
+    <div class="name-display name-dark">Aanya Raj Singh</div>
+    <div class="light-preview">
+      <div class="name-display">Aanya Raj Singh</div>
+    </div>
+    <div class="font-notes">
+      Warm, balanced, calligraphic roots. Very readable even at smaller sizes. Feels approachable but professional. Good for body-text-heavy sections too.
+    </div>
+  </div>
+
+  <!-- Winner recommendation -->
+  <div class="winner-section">
+    <div class="winner-label">✦ My Recommendation ✦</div>
+    <div style="font-family: 'Fraunces', serif; font-size: 48px; color: #f0eef5;">Aanya Raj Singh</div>
+    <div class="handwritten-demo">— I build AI systems that ship ✦</div>
+    
+    <div class="combo-preview" style="margin-top: 24px;">
+      <div style="font-family: 'Fraunces', serif; font-size: 32px; color: #f0eef5;">The Oracle</div>
+      <div class="combo-body">Paste a job description and I'll read your compatibility with Aanya. She thinks in systems, designs with intuition, and ships with intensity.</div>
+      <div class="combo-handwritten">your fortune awaits... ✦</div>
+    </div>
+
+    <div class="font-notes" style="border-top: none; text-align: left;">
+      <strong style="color: #7c5cff;">Why Fraunces wins for you:</strong><br><br>
+      • The double "a" in Aanya gets beautiful, slightly quirky curves — it's distinctive<br>
+      • Variable font = we can animate weight on hover/load for cinematic effect<br>
+      • Has "soft" axis that literally makes letters more rounded (Y2K kawaii alignment)<br>
+      • Italic version is stunning for accent text and rotating subtitles<br>
+      • Unique enough that no other portfolio will look like yours<br>
+      • Pairs perfectly with Satoshi (body) and Caveat (handwritten annotations)
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

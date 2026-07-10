@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,700;1,9..144,400;1,9..144,500&family=Caveat:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* Satoshi from CDN */
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #faf8f5;
+    --bg-secondary: #ffffff;
+    --bg-elevated: #f0ecf5;
+    --text-primary: #1a1025;
+    --text-secondary: #5a4d6b;
+    --text-muted: #6b6580;
+    --accent-lavender: #7c5cff;
+    --accent-pink: #d4629e;
+    --accent-electric: #5a3de8;
+    --accent-mint: #6bc4a6;
+    --border: #e8e2f0;
+    --glow: rgba(124, 92, 255, 0.1);
+    --gradient-oracle: linear-gradient(135deg, #7c5cff, #e8a9c8, #a9e8d0);
+  }
+
+  .dark {
+    --bg-primary: #0a0e1a;
+    --bg-secondary: #111827;
+    --bg-elevated: #1a2035;
+    --text-primary: #f0eef5;
+    --text-secondary: #a8a3b8;
+    --text-muted: #6b6580;
+    --accent-lavender: #b8a9e8;
+    --accent-pink: #e8a9c8;
+    --accent-electric: #7c5cff;
+    --accent-mint: #a9e8d0;
+    --border: #1e2540;
+    --glow: rgba(124, 92, 255, 0.15);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Satoshi', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-lavender);
+  }
+
+  /* Selection color */
+  ::selection {
+    background: rgba(124, 92, 255, 0.3);
+    color: var(--text-primary);
+  }
+}
+
+@layer components {
+  .text-gradient-oracle {
+    background: var(--gradient-oracle);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .border-gradient {
+    border: 1px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+  }
+  .border-gradient::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, #b8a9e8, #7c5cff, #e8a9c8, #a9e8d0);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .glass {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Sticker effect */
+  .sticker {
+    filter: drop-shadow(2px 3px 4px rgba(0, 0, 0, 0.2));
+  }
+
+  /* Page transition wrapper */
+  .page-transition {
+    min-height: 100vh;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Fraunces', serif;
+  }
+  .font-hand {
+    font-family: 'Caveat', cursive;
+  }
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Glitch effect for page transitions */
+  .glitch-in {
+    animation: glitchIn 0.4s ease-out forwards;
+  }
+
+  @keyframes glitchIn {
+    0% {
+      opacity: 0;
+      clip-path: inset(40% 0 60% 0);
+      transform: skewX(-2deg);
+    }
+    20% {
+      clip-path: inset(10% 0 80% 0);
+      transform: skewX(1deg);
+    }
+    40% {
+      clip-path: inset(60% 0 5% 0);
+      transform: skewX(-0.5deg);
+    }
+    60% {
+      clip-path: inset(20% 0 30% 0);
+      transform: skewX(0.3deg);
+    }
+    80% {
+      opacity: 1;
+      clip-path: inset(5% 0 5% 0);
+      transform: skewX(0);
+    }
+    100% {
+      opacity: 1;
+      clip-path: inset(0 0 0 0);
+      transform: skewX(0);
+    }
+  }
+
+  /* Scanline overlay for retro/Y2K feel */
+  .scanlines::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.015) 2px,
+      rgba(0, 0, 0, 0.015) 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* Noise texture overlay */
+  .noise::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9998;
+  }
+
+  /* Shimmer effect for oracle button */
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .shimmer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 40%,
+      rgba(255, 255, 255, 0.15) 45%,
+      rgba(255, 255, 255, 0.25) 50%,
+      rgba(255, 255, 255, 0.15) 55%,
+      transparent 60%
+    );
+    transform: translateX(-200%);
+    animation: shimmerSlide 3s ease-in-out infinite;
+  }
+  @keyframes shimmerSlide {
+    0%, 100% { transform: translateX(-200%); }
+    50% { transform: translateX(200%); }
+  }
+
+  /* Focus visible ring */
+  .focus-ring:focus-visible {
+    outline: 2px solid var(--accent-electric);
+    outline-offset: 2px;
+    border-radius: inherit;
+  }
+
+  /* Responsive text scaling */
+  .text-responsive-hero {
+    font-size: clamp(2.25rem, 7vw, 5rem);
+  }
+
+  /* Hide scrollbar utility */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Reduce motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
